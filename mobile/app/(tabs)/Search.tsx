@@ -1,12 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const index: React.FC = () => {
+const Search = () => {
   return (
     <View className="h-screen bg-['#0f0D23'] flex-1 items-center justify-center">
-      <Text className="text-white text-lg">Welcome to our app</Text>
+      <Text className="text-white text-lg">Welcome to Search Page</Text>
     </View>
   );
 };
 
-export default index;
+export default Search;
