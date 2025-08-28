@@ -22,9 +22,7 @@ cd mobile
 #### **2. Install Dependencies**
 
 ```bash
-npm install
-# or
-yarn install
+npm i
 ```
 
 #### **3. Configure Environment Variables**
@@ -60,8 +58,4 @@ This project uses the [TMDB API](https://developer.themoviedb.org/) to fetch mov
 * Add user authentication and favorites list.
 * Implement offline caching for previously viewed movies.
 * Enhance UI with animations using **React Native Reanimated**.
-
-### **Contributing**
-
-Contributions are welcome! Please fork the repo and submit a pull request for review.
 
