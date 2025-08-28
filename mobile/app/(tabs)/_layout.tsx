@@ -19,8 +19,7 @@ const BottomNavComp: React.FC<BottomNav> = ({ focused, src, title }) => {
     return (
       <ImageBackground
         source={require("../../assets/images/highlight.png")}
-        className="bg-slate-300 w-[8em] h-[4em] flex gap-1 flex-row items-center justify-center mt-4 rounded-full overflow-hidden flex-2"
-        
+        className="bg-slate-300 w-[7.5em] h-[4em] flex gap-1 flex-row items-center justify-center mt-4 rounded-full overflow-hidden flex-2"
       >
         <Image tintColor="#151312" className="size-5" source={icons[src]} />
         <Text className="text-secondary text-base font-semibold">{title}</Text>
@@ -42,8 +41,8 @@ const TabLayout: React.FC = () => {
         tabBarLabel: () => null,
         tabBarStyle:{
           backgroundColor:"#0f0D23",
-          marginBottom:30,
-          height:52,
+          marginBottom:36,
+          height:56,
           borderRadius:50,
           overflow:"hidden",
           borderColor:"#0f0d23",
