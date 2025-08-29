@@ -1,19 +1,28 @@
-import { View, Text, Image, ScrollView } from "react-native";
-import React, { useEffect } from "react";
+import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
+import React, { useEffect, useState } from "react";
 import SearchBar from "@/components/SearchBar";
 import { useRouter } from "expo-router";
-import useData from "@/services/useData";
+import axios from "axios";
+// import { TMDB_API_KEY } from '@env';
+
+const TNDB_API_KEY: string = "f3a61c1c53da6422029f5e6c70934e23";
 
 const Index: React.FC = () => {
+  const [movies, setMovies] = useState<any[]>([]);
+  const getData = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&api_key=${TNDB_API_KEY}`
+      );
+      setMovies(response.data.results);
+    } catch (err: any) {
+      console.log(`error message : ${err.message}`);
+    }
+  };
+  useEffect(() => {
+    getData();
+  }, []);
   const router = useRouter();
-
-  const {
-    data: movies,
-    loading,
-    error,
-    refetch,
-  } = useData<[]>("http://192.168.1.6:3000/fetchMovies");
-
   return (
     <View className="h-screen bg-['#0f0D23'] flex-1 w-full">
       <Image
@@ -37,7 +46,50 @@ const Index: React.FC = () => {
             router.push("/Search");
           }}
         />
-        <Text>{movies ? movies.results[0].title : ""}</Text>
+        <View style={{ marginTop: 20 }}>
+          {movies.map((movie) => (
+            <TouchableOpacity
+              key={movie.id}
+              style={{
+                backgroundColor: "#1c1c3c",
+                borderRadius: 12,
+                marginBottom: 16,
+                padding: 12,
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+              activeOpacity={0.8}
+            >
+              <Image
+                source={{
+                  uri: `https://image.tmdb.org/t/p/w200${movie.poster_path}`,
+                }}
+                style={{
+                  width: 80,
+                  height: 120,
+                  borderRadius: 10,
+                  marginRight: 12,
+                }}
+              />
+              <View style={{ flex: 1 }}>
+                <Text
+                  style={{ color: "white", fontSize: 16, fontWeight: "bold" }}
+                >
+                  {movie.title}
+                </Text>
+                <Text style={{ color: "#aaa", fontSize: 14, marginTop: 4 }}>
+                  {movie.release_date}
+                </Text>
+                <Text
+                  numberOfLines={3}
+                  style={{ color: "#ccc", fontSize: 12, marginTop: 6 }}
+                >
+                  {movie.overview}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </View>
       </ScrollView>
     </View>
   );
