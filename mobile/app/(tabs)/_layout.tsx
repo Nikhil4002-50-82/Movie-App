@@ -41,7 +41,7 @@ const TabLayout: React.FC = () => {
         tabBarLabel: () => null,
         tabBarStyle:{
           backgroundColor:"#0f0D23",
-          marginBottom:36,
+          marginBottom:20,
           height:56,
           borderRadius:50,
           overflow:"hidden",
