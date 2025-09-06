@@ -1,13 +1,17 @@
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import React from "react";
-import { Link } from "expo-router";
 
-const OtherTab: React.FC = () => {
+const OtherTab = () => {
   return (
-    <View className="flex-1 items-center justify-center bg-[#0f0d23]">
-      <Link href="/2" asChild>
-        <Text className="text-xl text-blue-300">Movie Details</Text>
-      </Link>
+    <View className="flex-1 items-center justify-center bg-[#0f0d23] px-10">
+      <View className="flex items-center justify-center flex-1 flex-col gap-5">
+        <Image
+          source={require("../../assets/icons/person.png")}
+          className="size-10"
+          tintColor="#fff"
+        />
+        <Text className="text-gray-500 text-base">Profile</Text>
+      </View>
     </View>
   );
 };

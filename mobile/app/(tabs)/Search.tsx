@@ -12,7 +12,7 @@ import SearchBar from "@/components/SearchBar";
 import MovieCard from "@/components/MovieCard";
 
 const Search: React.FC = () => {
-  const TNDB_API_KEY: string = "f3a61c1c53da6422029f5e6c70934e23";
+  const TNDB_API_KEY = process.env.TNDB_API_KEY;
   const [movies, setMovies] = useState<any[]>([]);
   const [query, setQuery] = useState<string>("");
 
@@ -34,7 +34,7 @@ const Search: React.FC = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       searchMovies(query);
-    }, 1000);
+    }, 500);
 
     return () => clearTimeout(timeoutId);
   }, [query]);
@@ -44,7 +44,7 @@ const Search: React.FC = () => {
       <StatusBar barStyle="light-content" backgroundColor="#0F0D23" />
       <Image
         source={require("../../assets/images/bg.png")}
-        className="absolute w-full h-full opacity-30"
+        className="absolute w-full h-[50%]"
         resizeMode="cover"
       />
       <FlatList
@@ -60,16 +60,16 @@ const Search: React.FC = () => {
         contentContainerStyle={{ paddingBottom: 80 }}
         ListHeaderComponent={
           <>
-           <View className="flex items-center justify-center mt-20 mb-6">
-                     <Image
-                       source={require("../../assets/icons/logo.png")}
-                       className="h-12 w-14"
-                       resizeMode="contain"
-                     />
-                     <Text className="text-white text-2xl font-extrabold mt-3 tracking-wider">
-                       MovieFlix
-                     </Text>
-                   </View>
+            <View className="flex items-center justify-center mt-20 mb-6">
+              <Image
+                source={require("../../assets/icons/logo.png")}
+                className="h-12 w-14"
+                resizeMode="contain"
+              />
+              <Text className="text-white text-2xl font-extrabold mt-3 tracking-wider">
+                MovieFlix
+              </Text>
+            </View>
             <View className="mb-6 mt-4 px-2">
               <SearchBar
                 placeholder="Search for a movie..."

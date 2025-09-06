@@ -84,7 +84,7 @@ const TabLayout: React.FC = () => {
         options={{
           headerShown: false,
           tabBarIcon: ({focused}) => (
-            <BottomNavComp focused={focused} title="OtherTab" src="person" />
+            <BottomNavComp focused={focused} title="Profile" src="person" />
           ),
         }}
       />

@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity, Image, Dimensions } from "react-native";
 import React from "react";
+import { useRouter } from "expo-router";
 
 interface Movie {
   id: number;
@@ -19,11 +20,13 @@ const MovieCard: React.FC<Movie> = ({
   vote_average,
   release_date,
 }) => {
+  const router=useRouter();
   return (
     <TouchableOpacity
       className="rounded-lg overflow-hidden bg-[#1A1A2E]/50 shadow-md"
       style={{ width: CARD_WIDTH, marginRight: 8, marginBottom: 16 }}
       activeOpacity={0.8}
+      onPress={()=>router.push(`/(movie-details)/${id}`)}
     >
       <Image
         source={{
